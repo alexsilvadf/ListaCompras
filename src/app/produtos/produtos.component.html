@@ -1,10 +1,10 @@
-<div class="p-5">
-    <div class="container shadow p-5">
+<div class="pt-5">
+    <div class="container shadow pt-5">
         <div class="p-5 border border-light rounded">
             <h6>Lista de Compras</h6>
             <hr>
 
-            <form [formGroup]="formulario" (ngSubmit)="CadastrarProduto()" style="border: 1px solid red;">
+            <form [formGroup]="formulario" (ngSubmit)="CadastrarProduto()">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 mb-2">
@@ -31,13 +31,13 @@
                 </div>
             </form>
 
-            <div class="container" style="border: 2px solid blue;">
+            <div class="container">
                 <div class="pt-5 row" *ngIf="produtos?.length == 0">
                     <span class="text-danger">Sem Produtos</span>
                 </div>
 
                 <div class="pt-5 row" *ngIf="produtos.length > 0">
-                    <table class="table table-hover table-sm" style="border: 2px solid green;">
+                    <table class="table table-hover table-sm">
                         <thead>
                             <tr>
                                 <th>Nome</th>
@@ -51,8 +51,11 @@
                                 <td> {{produto.nome}}</td>
                                 <td>{{produto.quantidade}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-sm btn-outline-info rounded-circle" (click)="AtualizarProduto(produto.produtoId)">
+                                    <button type="button" class="btn btn-sm btn-outline-info rounded-circle m-2" (click)="AtualizarProduto(produto.produtoId)">
                                         <fa-icon [icon]="faCheckCircle"></fa-icon>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-circle" (click)="RemoverProduto(produto.produtoId)">
+                                        <fa-icon [icon]="faTrash"></fa-icon>
                                     </button>
                                 </td>
                             </tr>

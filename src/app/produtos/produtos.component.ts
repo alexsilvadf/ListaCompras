@@ -1,7 +1,7 @@
 import { Component, numberAttribute } from '@angular/core';
 import { Produto } from '../Produto';
 import { Guid } from 'guid-typescript';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 
@@ -12,6 +12,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class ProdutosComponent {
   faCheckCircle = faCheckCircle;
+  faTrash = faTrash;
   produtos: Produto[] = [];
   formulario: any;
 
@@ -64,4 +65,23 @@ export class ProdutosComponent {
 
     localStorage.setItem("BD", JSON.stringify(this.produtos));
   }
+
+
+  RemoverProduto(produtoId: string){
+    const indice: number = this.produtos.findIndex(
+      (p) => p.produtoId === produtoId
+    );
+    console.log(this.produtos)
+
+    this.produtos.splice(indice, 1);
+
+    console.log(this.produtos)
+
+
+
+   
+
+   
+  }
+
 }
