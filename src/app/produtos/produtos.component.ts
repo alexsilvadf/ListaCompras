@@ -15,6 +15,7 @@ export class ProdutosComponent {
   faTrash = faTrash;
   produtos: Produto[] = [];
   formulario: any;
+  valorTotal: number = 0.00;
 
   constructor() {}
 
@@ -24,6 +25,7 @@ export class ProdutosComponent {
       produtoId: new FormControl(),
       nome: new FormControl(),
       quantidade: new FormControl(),
+      valorUnit: new FormControl(),
       isComprado: new FormControl(),
     });
   }
@@ -34,8 +36,11 @@ export class ProdutosComponent {
     const produto: Produto = this.formulario.value;
 
     if(produto.nome === null || produto.quantidade === null){
-      alert("Campos obrigatórios não preenchidos...")
+      alert("Campos obrigatórios não preenchidos...");
+      return;
     }
+
+    this.valorTotal += produto.valorUnit * produto.quantidade;
 
     this.produtos.push(produto);
 
@@ -71,9 +76,22 @@ export class ProdutosComponent {
     const indice: number = this.produtos.findIndex(
       (p) => p.produtoId === produtoId
     );
+
+    const produto: Produto = this.formulario.value;
+
     console.log(this.produtos)
 
-    this.produtos.splice(indice, 1);
+    this.produtos.forEach(produto => {
+      if(produto.produtoId === produtoId){
+        this.produtos.splice(indice, 1);
+  
+        this.valorTotal -= produto.valorUnit * produto.quantidade;
+      }
+    });
+
+    
+
+    
 
     console.log(this.produtos)
 

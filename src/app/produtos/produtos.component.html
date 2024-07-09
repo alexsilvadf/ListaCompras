@@ -1,7 +1,11 @@
 <div class="pt-5">
     <div class="container shadow pt-5">
         <div class="p-5 border border-light rounded">
-            <h6>Lista de Compras</h6>
+            <div class="d-flex">
+                <h6 class="col-8 ml-3">Lista de Compras</h6>
+               <h6 class="col-4 text-end">{{ valorTotal | currency: 'BRL' : true}}</h6>
+            </div>
+           
             <hr>
 
             <form [formGroup]="formulario" (ngSubmit)="CadastrarProduto()">
@@ -15,17 +19,26 @@
                             </div>
                         </div>
 
-                        <div class="col-5 float-sm-left">
-                            <div class="form-group">
-                                <input type="number" class="form-control form-control-sm"
+                        <div class="col-7 d-flex justify-content-between">
+                            <div class="col-3 form-group">
+                                <input type="number" class="form-control form-control-sm ml-20"
                                     placeholder="Qtd..." formControlName="quantidade" />
+
+                            </div>
+                            <div class="col-8 form-group">
+                                <input type="number" min="0.00" max="10000.00" class="form-control form-control-sm"
+                                    placeholder="Valor" formControlName="valorUnit" />
 
                             </div>
                         </div>
 
-                        <div class="col-7 float-sm-left">
-                            <button type="submit" class="btn btn-outline-info btn-sm">Adicionar</button>
+                        <div class="col-5">
+                            <div class="float-end">
+                                <button type="submit" class="btn btn btn-primary btn-sm" style="width: 120px;">Adicionar</button>
+                            </div>
                         </div>
+
+                       
 
                     </div>
                 </div>
